@@ -10,11 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400..700;1,6..12,400..700&display=swap" rel="stylesheet">
 
     <title>Países do Mundo</title>
+
+    <template data-js="card-template">
+      <article data-self-url="" class="bg-[--bg-complementary] rounded-md">
+        <img data-js="country-flag" class="mb-2 w-full rounded-t-md" src="" alt="">
+        <div class="country-info p-4">
+          <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
+          <p class="mb-2"><span class="font-bold">População:</span> <span data-js="country-population"></span></p>
+          <p class="mb-2"><span class="font-bold">Continente:</span> <span data-js="country-continent"></span></p>
+          <p><span class="font-bold">Tamanho:</span> <span data-js="country-size"></span></p>
+        </div>
+      </article>
+    </template>
   </head>
 
   <body class="bg-[--bg-color] text-[--text]">
-    <header class="bg-[--bg-complementary] [box-shadow:_0px_-4px_10px_black]">
-      <div class="flex justify-between items-center p-4 px-6 max-w-5xl m-auto">
+    <header class="mb-8 bg-[--bg-complementary] [box-shadow:_0px_-4px_10px_black]">
+      <div class="content-limitter flex justify-between items-center p-4 px-6">
         <span class="text-xl font-bold">Países do Mundo</span>
         <button data-js="theme-switcher" class="font-bold">
           <div class="flex items-center gap-1 hidden"><img src="src/assets/sun.svg" aria-hidden="true">Modo Claro</div>
@@ -23,6 +35,15 @@
       </div>
     </header>
 
-    <script src="./index.js" defer></script>
+    <main class="p-6">
+      <div class="content-limitter">
+        <div data-js="countries-list" class="grid grid-cols-countries gap-3">
+        </div>
+
+      </div>
+    </main>
+
+    <script src="./src/index.js" defer></script>
+    <script src="./src/themeSwitcher.js" defer></script>
   </body>
 </html>
