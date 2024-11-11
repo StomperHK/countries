@@ -21,7 +21,7 @@ async function requestCountries() {
   }
 }
 
-// requestCountries()
+requestCountries()
 
 function tokenizeAndAppendData(data) {
   const countries = data
