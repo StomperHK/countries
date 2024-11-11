@@ -24,8 +24,8 @@
     </template>
   </head>
 
-  <body class="bg-[--bg-color] text-[--text]">
-    <header class="mb-8 bg-[--bg-complementary] [box-shadow:_0px_-4px_10px_black]">
+  <body class="bg-[--bg-color] text-[--text] transition-colors">
+    <header class="mb-8 bg-[--bg-complementary] [box-shadow:_0px_-4px_10px_black] transition-colors">
       <div class="content-limitter flex justify-between items-center p-4 px-6">
         <span class="text-xl font-bold">Países do Mundo</span>
         <button data-js="theme-switcher" class="font-bold">
@@ -35,7 +35,7 @@
       </div>
     </header>
 
-    <main class="p-6">
+    <main class="p-6 px-10">
       <div class="content-limitter">
         <div data-js="countries-list" class="grid grid-cols-countries gap-3">
         </div>
