@@ -1,12 +1,17 @@
+import "./themeSwitcher.js";
+import "/index.css";
+
+
 const apiBaseURL = "https://restfulcountries.com/api/v1"
-const token = "1624|OzS4YRxxlZLmKRYRScDkph0Tf6IZKNH5IQvaakl3"
-const currentPage = 0;
+const apiToken = import.meta.env.VITE_API_TOKEN
+let currentPage = 0;
+
 
 async function requestCountries() {
   try {
       const response = await fetch(`${apiBaseURL}/countries?per_page=10&page=${currentPage}`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${apiToken}`
       }
     })
     const data = await response.json()
@@ -21,7 +26,7 @@ async function requestCountries() {
   }
 }
 
-// requestCountries()
+requestCountries()
 
 function tokenizeAndAppendData(data) {
   const countries = data
