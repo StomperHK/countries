@@ -36,3 +36,9 @@ img[src$="svg"] {
 .dark img[src$="svg"] {
   filter: invert(0);
 }
+
+@layer base {
+  .content-limitter {
+    @apply max-w-5xl m-auto;
+  }
+}
