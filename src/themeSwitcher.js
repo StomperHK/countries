@@ -1,5 +1,6 @@
 const themeSwitch = document.querySelector('[data-js="theme-switcher"]')
 
+
 function loadThemeFromLocalStorage() {
   if (!("localStorage" in window)) return
 
