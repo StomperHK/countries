@@ -12,7 +12,7 @@
     <title>Países do Mundo</title>
 
     <template data-js="card-template">
-      <article data-self-url="" class="bg-[--bg-complementary] rounded-md">
+      <article data-self-url="" class="bg-[--bg-complementary] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
         <img data-js="country-flag" class="mb-2 w-full rounded-t-md" src="" alt="">
         <div class="country-info p-4">
           <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
@@ -37,9 +37,10 @@
 
     <main class="p-6">
       <div class="content-limitter">
-        <div data-js="countries-list" class="grid grid-cols-countries gap-4">
+        <div data-js="countries-list" class="grid grid-cols-countries gap-5 mb-7">
         </div>
 
+        <div data-js="loading-observer" class="hidden flex items-center justify-center gap-2 font-bold">loading <div class="spinner"></div></div>
       </div>
     </main>
 
