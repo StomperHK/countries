@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "selector",
   theme: {
     extend: {
+      boxShadow: {
+        "card-hover": "0px 0px 0px 11px var(--shadow-color)",
+      },  
       gridTemplateColumns: {
         "countries": "repeat(auto-fill, minmax(220px, 1fr))",
       },
