@@ -9,11 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400..700;1,6..12,400..700&display=swap" rel="stylesheet">
 
-    <title>Países do Mundo</title>
+    <title>World's Countries</title>
 
     <template data-js="card-template">
       <article data-self-url="" class="bg-[--bg-complementary] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
-        <img data-js="country-flag" class="mb-2 w-full rounded-t-md" src="" alt="">
+        <img data-js="country-flag" class=" w-full rounded-t-md" src="" alt="">
         <div class="country-info p-4">
           <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
           <p class="mb-2"><span class="font-bold">População:</span> <span data-js="country-population"></span></p>
@@ -24,10 +24,10 @@
     </template>
   </head>
 
-  <body class="bg-[--bg-color] text-[--text]">
-    <header class="mb-8 bg-[--bg-complementary] [box-shadow:_0px_-4px_10px_black]">
+  <body class="bg-[--bg-color] text-[--text] pt-[--header-height] transition-colors">
+    <header class="mb-6 bg-[--bg-complementary] z-10 fixed top-0 left-0 right-0 [box-shadow:_0px_-4px_10px_black] transition-colors">
       <div class="content-limitter flex justify-between items-center p-4 px-6">
-        <span class="text-xl font-bold">Países do Mundo</span>
+        <span class="text-xl font-bold">World's Countries</span>
         <button data-js="theme-switcher" class="font-bold">
           <div class="flex items-center gap-1 hidden"><img src="src/assets/sun.svg" aria-hidden="true">Modo Claro</div>
           <div class="flex items-center gap-1 hidden"><img src="src/assets/moon.svg" aria-hidden="true">Modo Escuro</div>
@@ -35,12 +35,47 @@
       </div>
     </header>
 
-    <main class="p-6">
+    <main class="p-6 px-12">
+      <h1 class="mb-6 text-center font-bold text-4xl uppercase">World's Countries</h1>
+
       <div class="content-limitter">
         <div data-js="countries-list" class="grid grid-cols-countries gap-5 mb-7">
         </div>
 
         <div data-js="loading-observer" class="hidden flex items-center justify-center gap-2 font-bold">loading <div class="spinner"></div></div>
+
+        <dialog data-js="country-dialog" class="bg-[--bg-complementary] text-[--text] pt-[--header-height] w-full h-full p-6 fixed top-0 left-0 overflow-auto transition-colors">
+          <button data-js="country-dialog-close" class="btn pl-1 m-4"><img src="./src/assets/arrow_back.svg" alt=""> back</button>
+
+          <div class="dialog-content">
+            
+            <figure>
+              <img data-js="dialog-country-flag" class="m-auto mb-2 w-full rounded-md max-w-[300px]" src="" alt="">
+
+              <figcaption>
+                <h2 data-js="dialog-country-name" class="font-bold text-2xl mb-2 text-center"></h2>
+
+                <dl>
+                  <dt>Population:</dt>
+                  <dd data-js="dialog-country-population"></dd>
+
+                  <dt>Continent:</dt>
+                  <dd data-js="dialog-country-continent"></dd>
+
+                  <dt>Size:</dt>
+                  <dd data-js="dialog-country-size"></dd>
+
+                  <dt>Capital:</dt>
+                  <dd data-js="dialog-country-capital"></dd>
+
+                  <dt>Independence Date:</dt>
+                  <dd data-js="dialog-country-independence-date"></dd>
+                
+                  <p data-js="dialog-country-description"></p>
+              </figcaption>
+            </figure>
+          </div>
+        </dialog>
       </div>
     </main>
 
