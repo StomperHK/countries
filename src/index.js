@@ -18,7 +18,7 @@ function setCountryListState(state) {
   hideAllListContainers()
 
   switch (state) {
-    case "success":
+    case "visible":
       document.querySelector('[data-js="countries-list-content"]').classList.remove('opacity-0')
       break;
       
@@ -61,7 +61,7 @@ async function requestCountries(isInfiniteScrollFetching = false) {
     }
 
     const data = (await response.json()).data
-
+    
     if (!data) {
       reachedEnd = true
       deleteLoadingObserver()
@@ -92,7 +92,7 @@ function tokenizeAndAppendData(data, clearData = false) {
     countriesList.innerHTML === ""
   }
 
-  setCountryListState("success")
+  setCountryListState("visible")
 
   if (!Array.isArray(countries)) countries = [countries]
 
@@ -132,6 +132,11 @@ function debounceRequestCountry() {
     timer = setTimeout(() => {
       const countriesList = document.querySelector('[data-js="countries-list-content"]')
       countriesList.innerHTML = ""
+
+      if (searchBarValue === "") {    // if the search bar is empty, dont request the countries
+        requestCountries()
+        return
+      }
 
       requestCountry(apiBaseURL + "/" + searchBarValue.trim(), "search-bar").then(data => data !== 404 ? tokenizeAndAppendData(data, true) : setCountryListState("empty"))
       deleteLoadingObserver()
@@ -223,7 +228,7 @@ async function requestCountry(countrySelfUrl, componentThatMadeTheRequest) {
       throw new Error(response.status)
     }
 
-    setCountryListState("success")
+    setCountryListState("visible")
 
     const data = (await response.json()).data
     
@@ -253,7 +258,7 @@ function deleteLoadingObserver() {
   loadingObserver.unobserve(loadingObserverEL)
   loadingObserver = null
 
-  loadingObserverEL.textContent = "you reached the end :O"
+  loadingObserverEL.classList.add("hidden")
 }
 
 
