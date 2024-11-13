@@ -12,9 +12,8 @@ body {
   --text: hsl(200, 15%, 8%);
   --bg-color: hsl(0, 0%, 98%);
   --bg-complementary: hsl(0, 5%, 92.2%);
-  /* --shadow: hsl(0, 0%, 52%); */
   --shadow-color: hsl(0, 20%, 84%);
-
+  --border-color: rgba(0, 0, 0, 0.5);
   --header-height: 60px;
 }
 
@@ -22,7 +21,7 @@ body.dark {
   --text: white;
   --bg-color: hsl(207, 26%, 17%);
   --bg-complementary: hsl(209, 23%, 22%);
-  /* --shadow: hsl(0, 0%, 52%); */
+  --border-color: rgba(255, 255, 255, 0.5);
   --shadow-color: hsl(0, 1%, 31%);
 }
 
@@ -41,9 +40,38 @@ img[src$="svg"] {
   filter: invert(0);
 }
 
+dialog[open] {
+  animation: slide-bottom-to-top 0.3s ease-out forwards;
+}
+
+[data-js="countries-list-content"] article {
+  @apply cursor-pointer;
+}
+
+
+@keyframes slide-bottom-to-top {
+  0% {
+    display: block;
+    transform: translateY(100%);
+  }
+  100% {
+    display: block;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @supports (button:focus-visible) {
   @layer base {
-    button, input, select, textarea {
+    button, input, select, textarea, [data-js="countries-list-content"] article {
       outline: none !important;
       @apply outline-none transition-shadow focus-visible:shadow-focus-visible;
     }
@@ -67,11 +95,10 @@ img[src$="svg"] {
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+@media (pointer: coarse) {
+  @layer components {
+    .btn, [data-js="countries-list-content"] > article {
+      @apply cursor-default;
+    }
   }
 }

@@ -8,17 +8,19 @@ export function setCountryModalState(state) {
       document.querySelector('[data-js="dialog-country-content"]').classList.remove('opacity-0');
       break;
     case 'loading':
-      document.querySelector('[data-js="dialog-country-spinner"]').classList.remove('opacity-0');
+      document.querySelector('[data-js="main-spinner"]').classList.remove('opacity-0');
       break;
     case 'error':
       document.querySelector('[data-js="dialog-country-error"]').classList.remove('opacity-0');
       break;
+    default:
+      throw new Error(`Unknown state: ${state}`);
   }
   
 }
 
 function hideAllDialogContainers() {
-  Array.from(document.querySelectorAll('[data-js="dialog-country"] > div'), container => container.classList.add("opacity-0"))
+  Array.from(document.querySelectorAll('[data-js="dialog-country"] > div, [data-js="main-spinner"]'), container => container.classList.add("opacity-0"))
 }
 
 export async function populateAndShowCountryDialog(selfUrl, requestCountry) {
@@ -26,9 +28,8 @@ export async function populateAndShowCountryDialog(selfUrl, requestCountry) {
   
   dialog.show()
   countryDialogCloseButton.focus()
-  setCountryModalState('loading')
   
-  const {name, size, capital, full_name, currency, continent, population, href: { flag }} = await requestCountry(selfUrl)
+  const {name, size, capital, full_name, currency, continent, population, href: { flag }} = await requestCountry(selfUrl, "dialog")
 
   const [dialogCountryFlag, dialogCountryName, dialogCountryPopulation, dialogCountrySize, dialogCountryContinent, dialogCountryCapital, dialogCountryCurrency] = document.querySelectorAll('[data-js="dialog-country-flag"], [data-js="dialog-country-name"], [data-js="dialog-country-population"], [data-js="dialog-country-size"], [data-js="dialog-country-continent"], [data-js="dialog-country-capital"], [data-js="dialog-country-currency"]')
 
@@ -46,7 +47,7 @@ export async function populateAndShowCountryDialog(selfUrl, requestCountry) {
 
 function closeCountryDialog() {
   const dialog = document.querySelector('[data-js="dialog-country"]')
-  setCountryModalState("loading")
+  
   dialog.close()
 }
 
