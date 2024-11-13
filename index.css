@@ -40,9 +40,38 @@ img[src$="svg"] {
   filter: invert(0);
 }
 
+dialog[open] {
+  animation: slide-bottom-to-top 0.3s ease-out forwards;
+}
+
+[data-js="countries-list-content"] article {
+  @apply cursor-pointer;
+}
+
+
+@keyframes slide-bottom-to-top {
+  0% {
+    display: block;
+    transform: translateY(100%);
+  }
+  100% {
+    display: block;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @supports (button:focus-visible) {
   @layer base {
-    button, input, select, textarea {
+    button, input, select, textarea, [data-js="countries-list-content"] article {
       outline: none !important;
       @apply outline-none transition-shadow focus-visible:shadow-focus-visible;
     }
@@ -66,11 +95,10 @@ img[src$="svg"] {
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+@media (pointer: coarse) {
+  @layer components {
+    .btn, [data-js="countries-list-content"] > article {
+      @apply cursor-default;
+    }
   }
 }

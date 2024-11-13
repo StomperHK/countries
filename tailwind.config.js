@@ -14,6 +14,9 @@ module.exports = {
       gridTemplateColumns: {
         "countries": "repeat(auto-fill, minmax(220px, 1fr))",
       },
+      transitionProperty: {
+        "shadow-background": "box-shadow, background-color",
+      },
     },
   },
   plugins: [],
