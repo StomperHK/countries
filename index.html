@@ -12,8 +12,8 @@
     <title>World's Countries</title>
 
     <template data-js="card-template">
-      <article data-self-url="" class="bg-[--bg-complementary] border-2 border-[--text] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
-        <img data-js="country-flag" class=" w-full rounded-t-[5px] aspect-video" src="" alt="">
+      <article data-self-url="" class="bg-[--bg-complementary] border-2 border-[--border-color] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
+        <img data-js="country-flag" class=" w-full rounded-t-[4px] aspect-video" src="" alt="">
         <div class="country-info p-4">
           <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
           <p class="mb-2"><span class="font-bold">Population:</span> <span data-js="country-population"></span></p>
@@ -38,12 +38,29 @@
     <main class="p-6 px-12">
       <h1 class="mb-8 text-center font-bold text-4xl uppercase">World's Countries</h1>
 
-      <form class="flex w-full max-w-3xl mb-10 m-auto">
-        <input type="search" id="" placeholder="Buscar Países" class="w-full p-2 border-2 border-[--text] rounded-md bg-transparent">
-      </form>
+      <div class="flex w-full max-w-3xl mb-10 m-auto">
+        <div class="flex w-full gap-6 items-center p-2 px-4 bg-[--bg-complementary] rounded shadow-lg transition-colors">
+          <img src="./src//assets/search.svg" alt="">
+          <input data-js="search-bar" type="search" id="" placeholder="Search countries" class="w-full p-1 bg-transparent rounded">
+          <button data-js="search-bar-clear" title="clear search bar" class="p-1 px-1.5 bg-[--bg-color] rounded invisible"><img src="./src/assets/close.svg" alt="clear search bar"></button>
+        </div>
+
+        
+      </div>
 
       <div class="content-limitter">
-        <div data-js="countries-list" class="grid grid-cols-countries gap-6 mb-7">
+        <div data-js="countries-list-wrapper">
+          <div data-js="countries-list-content" class="grid grid-cols-countries gap-6 mb-7 opacity-0 transition-opacity">
+          
+          </div>
+
+          <div data-js="countries-list-error" class="hidden">  <!-- error container -->
+            <p class="text-red-400 font-bold text-xl text-center">Erro ao carregar dados. Recarrege a página</p>
+          </div>
+
+          <div data-js="countries-list-empty" class="hidden">  <!-- no data container -->
+            <p class="font-bold text-xl text-center">Sem resultados</p>
+          </div>
         </div>
 
         <div data-js="loading-observer" class="hidden flex items-center justify-center gap-2 font-bold">loading <div class="spinner"></div></div>
@@ -82,13 +99,13 @@
             </figure>
           </div>
 
-          <div data-js="dialog-country-spinner" class="spinner absolute left-1/2 top-1/2 p-4 border-4 opacity-0 transition-opacity"></div>   <!-- loading container -->
-
           <div data-js="dialog-country-error">  <!-- error container -->
-            <p class="text-red-400 font-bold text-xl text-center opacity-0 transition-opacity">Erro ao carregar dados. Recarrege a página.</p>
+            <p class="text-red-400 font-bold text-xl text-center opacity-0 transition-opacity">Erro ao carregar dados. Recarrege a página</p>
           </div>
         </dialog>
       </div>
+
+      <div data-js="main-spinner" class="spinner absolute left-1/2 top-1/2 p-4 border-4 opacity-0 transition-opacity"></div>
     </main>
 
     <script src="./src/index.js" type="module"></script>
