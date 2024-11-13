@@ -76,7 +76,7 @@ function tokenizeAndAppendData(data) {
   countriesList.appendChild(fragment)
 }
 
-/*tokenizeAndAppendData([{
+tokenizeAndAppendData([{
   "name": "Switzerland",
   "full_name": "Swiss Confederation",
   "capital": "Berne",
@@ -126,7 +126,7 @@ function tokenizeAndAppendData(data) {
     "presidents": "https://restfulcountries.com/api/v1/countries/Switzerland/presidents",
     "flag": "https://restfulcountries.com/assets/images/flags/Switzerland.png"
   }
-}])*/
+}])
 
 async function requestCountry(countrySelfUrl) {
   try {
