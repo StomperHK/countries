@@ -130,13 +130,13 @@ function debounceRequestCountry() {
     setCountryListState("loading")
 
     timer = setTimeout(() => {
-      const countriesList = document.querySelector('[data-js="countries-list-content"]')
-      countriesList.innerHTML = ""
-
       if (searchBarValue === "") {    // if the search bar is empty, dont request the countries
-        requestCountries()
+        clearSeachBarAndRequestCountries()
         return
       }
+
+      const countriesList = document.querySelector('[data-js="countries-list-content"]')
+      countriesList.innerHTML = ""
 
       requestCountry(apiBaseURL + "/" + searchBarValue.trim(), "search-bar").then(data => data !== 404 ? tokenizeAndAppendData(data, true) : setCountryListState("empty"))
       deleteLoadingObserver()
@@ -156,62 +156,10 @@ function clearSeachBarAndRequestCountries() {
   currentPage = 0
   reachedEnd = false
 
-  this.classList.add("invisible")
+  searchBarClearButton.classList.add("invisible")
 
   requestCountries()
 }
-
-/*tokenizeAndAppendData([{
-  "name": "Switzerland",
-  "full_name": "Swiss Confederation",
-  "capital": "Berne",
-  "iso2": "CH",
-  "iso3": "CHE",
-  "covid19": {
-    "total_case": "317,017",
-    "total_deaths": "4,236",
-    "last_updated": "2020-12-01T08:35:33.000000Z"
-  },
-  "current_president": null,
-  "currency": "CHF",
-  "phone_code": "41",
-  "continent": "Europe",
-  "description": null,
-  "size": "41,285 km²",
-  "independence_date": null,
-  "population": "8,681,478",
-  "href": {
-    "self": "https://restfulcountries.com/api/v1/countries/Switzerland",
-    "states": "https://restfulcountries.com/api/v1/countries/Switzerland/states",
-    "presidents": "https://restfulcountries.com/api/v1/countries/Switzerland/presidents",
-    "flag": "https://restfulcountries.com/assets/images/flags/Switzerland.png"
-  }
-}, {
-  "name": "Switzerland",
-  "full_name": "Swiss Confederation",
-  "capital": "Berne",
-  "iso2": "CH",
-  "iso3": "CHE",
-  "covid19": {
-    "total_case": "317,017",
-    "total_deaths": "4,236",
-    "last_updated": "2020-12-01T08:35:33.000000Z"
-  },
-  "current_president": null,
-  "currency": "CHF",
-  "phone_code": "41",
-  "continent": "Europe",
-  "description": null,
-  "size": "41,285 km²",
-  "independence_date": null,
-  "population": "8,681,478",
-  "href": {
-    "self": "https://restfulcountries.com/api/v1/countries/Switzerland",
-    "states": "https://restfulcountries.com/api/v1/countries/Switzerland/states",
-    "presidents": "https://restfulcountries.com/api/v1/countries/Switzerland/presidents",
-    "flag": "https://restfulcountries.com/assets/images/flags/Switzerland.png"
-  }
-}])*/
 
 async function requestCountry(countrySelfUrl, componentThatMadeTheRequest) {
   if (componentThatMadeTheRequest === "search-bar") setCountryListState("loading")
