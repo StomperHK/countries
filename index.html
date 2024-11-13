@@ -12,7 +12,7 @@
     <title>World's Countries</title>
 
     <template data-js="card-template">
-      <article data-self-url="" class="bg-[--bg-complementary] border-2 border-[--border-color] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
+      <article data-self-url="" tabindex="0" class="bg-[--bg-complementary] border-2 border-[--border-color] rounded-md shadow-lg hover:shadow-card-hover transition-shadow-background">
         <img data-js="country-flag" class=" w-full rounded-t-[4px] aspect-video" src="" alt="">
         <div class="country-info p-4">
           <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
@@ -35,17 +35,15 @@
       </div>
     </header>
 
-    <main class="p-6 px-12">
+    <main class="p-6 px-8 md:px-12">
       <h1 class="mb-8 text-center font-bold text-4xl uppercase">World's Countries</h1>
 
       <div class="flex w-full max-w-3xl mb-10 m-auto">
-        <div class="flex w-full gap-6 items-center p-2 px-4 bg-[--bg-complementary] rounded shadow-lg transition-colors">
+        <div class="flex w-full gap-3 items-center p-2 px-3 bg-[--bg-complementary] rounded shadow-lg transition-colors md:py-3 md:px4">
           <img src="./src//assets/search.svg" alt="">
-          <input data-js="search-bar" type="search" id="" placeholder="Search countries" class="w-full p-1 bg-transparent rounded">
+          <input data-js="search-bar" type="search" id="" placeholder="Search countries" class="w-full p-1 px-2 bg-transparent rounded placeholder:text-[--border-color] appearance-none">
           <button data-js="search-bar-clear" title="clear search bar" class="p-1 px-1.5 bg-[--bg-color] rounded invisible"><img src="./src/assets/close.svg" alt="clear search bar"></button>
         </div>
-
-        
       </div>
 
       <div class="content-limitter">
