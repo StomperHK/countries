@@ -12,8 +12,8 @@
     <title>World's Countries</title>
 
     <template data-js="card-template">
-      <article data-self-url="" class="bg-[--bg-complementary] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
-        <img data-js="country-flag" class=" w-full rounded-t-md aspect-video" src="" alt="">
+      <article data-self-url="" class="bg-[--bg-complementary] border-2 border-[--text] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
+        <img data-js="country-flag" class=" w-full rounded-t-[5px] aspect-video" src="" alt="">
         <div class="country-info p-4">
           <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
           <p class="mb-2"><span class="font-bold">Population:</span> <span data-js="country-population"></span></p>
@@ -25,7 +25,7 @@
   </head>
 
   <body class="bg-[--bg-color] text-[--text] pt-[--header-height] transition-colors">
-    <header class="mb-6 bg-[--bg-complementary] z-10 fixed top-0 left-0 right-0 [box-shadow:_0px_-4px_10px_black] transition-colors">
+    <header class="mb-8 bg-[--bg-complementary] z-10 fixed top-0 left-0 right-0 [box-shadow:_0px_-4px_10px_black] transition-colors">
       <div class="content-limitter flex justify-between items-center p-4 px-6">
         <span class="text-xl font-bold">World's Countries</span>
         <button data-js="theme-switcher" class="font-bold">
@@ -36,7 +36,7 @@
     </header>
 
     <main class="p-6 px-12">
-      <h1 class="mb-6 text-center font-bold text-4xl uppercase">World's Countries</h1>
+      <h1 class="mb-8 text-center font-bold text-4xl uppercase">World's Countries</h1>
 
       <div class="content-limitter">
         <div data-js="countries-list" class="grid grid-cols-countries gap-6 mb-7">
@@ -45,16 +45,16 @@
         <div data-js="loading-observer" class="hidden flex items-center justify-center gap-2 font-bold">loading <div class="spinner"></div></div>
 
         <dialog data-js="dialog-country" class="bg-[--bg-complementary] text-[--text] pt-[--header-height] w-full h-full p-6 fixed top-0 left-0 overflow-auto transition-colors">
-          <button data-js="country-dialog-close" class="btn pl-1 my-7 md:mb-[20vh]"><img src="./src/assets/arrow_back.svg" alt=""> back</button>
+          <button data-js="country-dialog-close" class="btn pl-1 my-7 md:mb-[15vh]"><img src="./src/assets/arrow_back.svg" alt=""> back</button>
 
           <div data-js="dialog-country-content" class="content-limitter opacity-0 transition-opacity">  <!-- content container -->
             <figure class="md:flex md:justify-around md:gap-6">
-              <img data-js="dialog-country-flag" class="m-auto mb-5 w-full rounded-md max-w-[400px] md:mx-0" src="" alt="">
+              <img data-js="dialog-country-flag" class="m-auto mb-5 w-full rounded-md shadow-lg max-w-[400px] md:mx-0" src="" alt="">
 
               <figcaption>
                 <h2 data-js="dialog-country-name" class="font-bold text-2xl mb-2 text-center"></h2>
 
-                <dl class="flex items-start justify-center gap-8 text-center text-lg">
+                <dl class="flex flex-wrap items-start justify-center gap-8 text-center text-lg">
                   <div>
                     <dt class="font-bold underline my-2">Population:</dt>
                     <dd data-js="dialog-country-population"></dd>
@@ -70,7 +70,7 @@
                   </div>
 
                   <div>
-                    <dt class="font-bold underline my-2">Currency:</dt>
+                    <dt class="font-bold underline mb-2 min-[407px]:my-2">Currency:</dt>
                     <dd data-js="dialog-country-currency"></dd>
                   </div>
                 </dl>
