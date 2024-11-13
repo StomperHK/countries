@@ -1,4 +1,5 @@
 import "./themeSwitcher.js";
+import {setCountryModalState, populateAndShowCountryDialog} from "./countryModal.js";
 import "/index.css";
 
 const loadingObserverEL = document.querySelector('[data-js="loading-observer"]')
@@ -9,10 +10,8 @@ const apiToken = import.meta.env.VITE_API_TOKEN
 let currentPage = 0;
 let reachedEnd = false;
 
-const countryDialogCloseButton = document.querySelector('[data-js="country-dialog-close"]')
 
-
-async function requestCountries() {
+async function requestCountries() {  
   try {
     if (reachedEnd) return
 
@@ -42,7 +41,7 @@ async function requestCountries() {
     currentPage++
 
   } catch (error) {
-    console.log(error);
+    setCountryModalState("error")
   }
 }
 
@@ -69,7 +68,7 @@ function tokenizeAndAppendData(data) {
     countryFlag.alt = name + " flag"
     countryCardElement.dataset.selfUrl = self
 
-    countryCardElement.addEventListener('click', populateAndShowCountryDialog)
+    countryCardElement.addEventListener('click', () => populateAndShowCountryDialog((self), requestCountry))
 
     fragment.appendChild(countryCardElement)
   })
@@ -142,40 +141,12 @@ async function requestCountry(countrySelfUrl) {
     }
 
     const data = (await response.json()).data
-    console.log(data);
     
     return data
 
   } catch (error) {
     console.log(error);
   }
-}
-
-async function populateAndShowCountryDialog() {
-  const dialog = document.querySelector('[data-js="country-dialog"]')
-  
-  dialog.show()
-  console.log(this.dataset.selfUrl);
-  
-  const {name, size, capital, full_name,  continent, population, independence_date, description, href: { flag }} = await requestCountry(this.dataset.selfUrl)
-
-  const [dialogCountryFlag, dialogCountryName, dialogCountryPopulation, dialogCountrySize, dialogCountryContinent, dialogCountryCapital, independenceDate, dialogCountryDescription] = document.querySelectorAll('[data-js="dialog-country-flag"], [data-js="dialog-country-name"], [data-js="dialog-country-population"], [data-js="dialog-country-size"], [data-js="dialog-country-continent"], [data-js="dialog-country-capital"], [data-js="dialog-country-independence-date"], [data-js="dialog-country-currencies"], [data-js="dialog-country-languages"], [data-js="dialog-country-description"]')
-
-  dialogCountryFlag.src = flag
-  dialogCountryFlag.alt = name + " flag"
-  dialogCountryName.textContent = name + " (" + full_name + ") "
-  dialogCountryPopulation.textContent = population
-  dialogCountrySize.textContent = size
-  dialogCountryContinent.textContent = continent
-  dialogCountryCapital.textContent = capital
-  independenceDate.textContent = independence_date
-  dialogCountryDescription.textContent = description
-
-}
-
-function closeCountryDialog() {
-  const dialog = document.querySelector('[data-js="country-dialog"]')
-  dialog.close()
 }
 
 function createLoadingObserver() {
@@ -195,6 +166,3 @@ function deleteLoadingObserer() {
 
   loadingObserver.unobserve(loadingObserverEL)
 }
-
-
-countryDialogCloseButton.addEventListener('click', closeCountryDialog)

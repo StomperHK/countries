@@ -13,10 +13,10 @@
 
     <template data-js="card-template">
       <article data-self-url="" class="bg-[--bg-complementary] rounded-md shadow-lg hover:shadow-card-hover transition-shadow">
-        <img data-js="country-flag" class=" w-full rounded-t-md" src="" alt="">
+        <img data-js="country-flag" class=" w-full rounded-t-md aspect-video" src="" alt="">
         <div class="country-info p-4">
           <h2 data-js="country-name" class="font-bold text-lg mb-2"></h2>
-          <p class="mb-2"><span class="font-bold">Populatuion:</span> <span data-js="country-population"></span></p>
+          <p class="mb-2"><span class="font-bold">Population:</span> <span data-js="country-population"></span></p>
           <p class="mb-2"><span class="font-bold">Continent:</span> <span data-js="country-continent"></span></p>
           <p><span class="font-bold">Size:</span> <span data-js="country-size"></span></p>
         </div>
@@ -44,18 +44,17 @@
 
         <div data-js="loading-observer" class="hidden flex items-center justify-center gap-2 font-bold">loading <div class="spinner"></div></div>
 
-        <dialog data-js="country-dialog" class="bg-[--bg-complementary] text-[--text] pt-[--header-height] w-full h-full p-6 fixed top-0 left-0 overflow-auto transition-colors">
+        <dialog data-js="dialog-country" class="bg-[--bg-complementary] text-[--text] pt-[--header-height] w-full h-full p-6 fixed top-0 left-0 overflow-auto transition-colors">
           <button data-js="country-dialog-close" class="btn pl-1 my-7 md:mb-[20vh]"><img src="./src/assets/arrow_back.svg" alt=""> back</button>
 
-          <div class="dialog-content content-limitter">
-            
+          <div data-js="dialog-country-content" class="content-limitter opacity-0 transition-opacity">  <!-- content container -->
             <figure class="md:flex md:justify-around md:gap-6">
               <img data-js="dialog-country-flag" class="m-auto mb-5 w-full rounded-md max-w-[400px] md:mx-0" src="" alt="">
 
               <figcaption>
                 <h2 data-js="dialog-country-name" class="font-bold text-2xl mb-2 text-center"></h2>
 
-                <dl class="flex items-center justify-center gap-8 text-center text-xl">
+                <dl class="flex items-start justify-center gap-8 text-center text-lg">
                   <div>
                     <dt class="font-bold underline my-2">Population:</dt>
                     <dd data-js="dialog-country-population"></dd>
@@ -63,16 +62,26 @@
                     <dd data-js="dialog-country-size"></dd>
                   </div>
 
-                  <div class="translate-x-[30px]">
+                  <div>
                     <dt class="font-bold underline my-2">Continent:</dt>
                     <dd data-js="dialog-country-continent"></dd>
                     <dt class="font-bold underline my-2">Capital:</dt>
                     <dd data-js="dialog-country-capital"></dd>
                   </div>
-                
-                  <p data-js="dialog-country-description"></p>
+
+                  <div>
+                    <dt class="font-bold underline my-2">Currency:</dt>
+                    <dd data-js="dialog-country-currency"></dd>
+                  </div>
+                </dl>
               </figcaption>
             </figure>
+          </div>
+
+          <div data-js="dialog-country-spinner" class="spinner absolute left-1/2 top-1/2 p-4 border-4 opacity-0 transition-opacity"></div>   <!-- loading container -->
+
+          <div data-js="dialog-country-error">  <!-- error container -->
+            <p class="text-red-400 font-bold text-xl text-center opacity-0 transition-opacity">Erro ao carregar dados. Recarrege a página.</p>
           </div>
         </dialog>
       </div>
