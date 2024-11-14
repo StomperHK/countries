@@ -29,15 +29,12 @@ html {
   font-family: "Nunito Sans", sans-serif;
 }
 
-img[src$="svg"] {
-  width: 20px;
-  height: 20px;
-
-  filter: invert(1);
+img[src*="svg"] {
+  @apply w-[20px] h-[20px] invert;
 }
 
-.dark img[src$="svg"] {
-  filter: invert(0);
+.dark img[src*="svg"] {
+  @apply invert-0
 }
 
 dialog[open] {
