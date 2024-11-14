@@ -13,6 +13,8 @@ const apiToken = import.meta.env.VITE_API_TOKEN
 let currentPage = 0;
 let reachedEnd = false;
 
+console.log(apiToken);
+
 
 function setCountryListState(state) {
   hideAllListContainers()
@@ -66,6 +68,8 @@ async function requestCountries(isInfiniteScrollFetching = false) {
       reachedEnd = true
       deleteLoadingObserver()
 
+      console.log("data:", data);
+
       return
     }
 
@@ -76,6 +80,8 @@ async function requestCountries(isInfiniteScrollFetching = false) {
     currentPage++
 
   } catch (error) {
+    console.log(error);
+    
     setCountryModalState("error")
   }
 }
