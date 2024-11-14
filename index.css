@@ -30,14 +30,11 @@ html {
 }
 
 img[src$="svg"] {
-  width: 20px;
-  height: 20px;
-
-  filter: invert(1);
+  @apply w-[20px] h-[20px] invert;
 }
 
 .dark img[src$="svg"] {
-  filter: invert(0);
+  @apply invert-0
 }
 
 dialog[open] {
