@@ -66,6 +66,8 @@ async function requestCountries(isInfiniteScrollFetching = false) {
       reachedEnd = true
       deleteLoadingObserver()
 
+      console.log("data:", data);
+
       return
     }
 
@@ -76,7 +78,7 @@ async function requestCountries(isInfiniteScrollFetching = false) {
     currentPage++
 
   } catch (error) {
-    setCountryModalState("error")
+    setCountryListState("error")
   }
 }
 
